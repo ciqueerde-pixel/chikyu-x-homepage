@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { BrandMark } from "@/components/BrandMark";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import type { Dictionary } from "@/i18n/dictionaries";
 import {
   localePath,
@@ -40,9 +41,6 @@ export function SiteHeader({ locale, dict }: Props) {
       match: "/contact",
     },
   ];
-
-  const otherLocale: Locale = locale === "ja" ? "en" : "ja";
-  const switchHref = localePath(otherLocale, pathnameWithoutLocale);
 
   useEffect(() => {
     setOpen(false);
@@ -92,23 +90,17 @@ export function SiteHeader({ locale, dict }: Props) {
             })}
           </nav>
 
-          <Link
-            href={switchHref}
-            className="text-[0.72rem] tracking-[0.2em] text-ink transition-opacity hover:opacity-60"
-            aria-label={otherLocale === "en" ? "English" : "Japanese"}
-          >
-            {otherLocale === "en" ? "EN" : "JA"}
-          </Link>
+          <LanguageSwitcher
+            locale={locale}
+            pathnameWithoutLocale={pathnameWithoutLocale}
+          />
         </div>
 
         <div className="relative z-50 flex items-center gap-3 md:hidden">
-          <Link
-            href={switchHref}
-            className="text-[0.72rem] tracking-[0.2em] text-ink"
-            aria-label={otherLocale === "en" ? "English" : "Japanese"}
-          >
-            {otherLocale === "en" ? "EN" : "JA"}
-          </Link>
+          <LanguageSwitcher
+            locale={locale}
+            pathnameWithoutLocale={pathnameWithoutLocale}
+          />
           <button
             type="button"
             className="flex h-10 w-10 items-center justify-center"
