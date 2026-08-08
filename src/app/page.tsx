@@ -114,23 +114,31 @@ export default function HomePage() {
             </p>
           </Reveal>
 
-          <div className="mt-14 grid gap-0 border-t border-line md:grid-cols-2">
-            {projects.map((project, index) => (
-              <Reveal
-                key={project.title}
-                delayClassName={index % 2 === 1 ? "reveal-delay-1" : ""}
-                className="border-b border-line md:odd:border-r"
-              >
-                <article className="flex h-full flex-col px-0 py-10 md:px-8 md:py-12 md:first:pl-0">
-                  <h3 className="text-[1.15rem] font-medium tracking-[0.14em]">
-                    {project.title}
-                  </h3>
-                  <p className="mt-5 text-[0.98rem] leading-[1.9] text-ink-soft">
-                    {project.body}
-                  </p>
-                </article>
-              </Reveal>
-            ))}
+          <div className="mt-14 flex flex-col border-t border-line">
+            {projects.map((project, index) => {
+              const needsBreak =
+                project.title === "GOLDWIN" ||
+                project.title === "地球を吹く in Japan";
+
+              return (
+                <Reveal
+                  key={project.title}
+                  delayClassName={index > 0 ? "reveal-delay-1" : ""}
+                  className={`border-b border-line ${
+                    needsBreak ? "mt-10 border-t border-line" : ""
+                  }`}
+                >
+                  <article className="flex flex-col py-10 md:py-12">
+                    <h3 className="text-[1.15rem] font-medium tracking-[0.14em]">
+                      {project.title}
+                    </h3>
+                    <p className="mt-5 max-w-[40rem] text-[0.98rem] leading-[1.9] text-ink-soft">
+                      {project.body}
+                    </p>
+                  </article>
+                </Reveal>
+              );
+            })}
           </div>
         </div>
       </section>
