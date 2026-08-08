@@ -1,48 +1,30 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { Reveal } from "@/components/Reveal";
+import { getDictionary } from "@/i18n/dictionaries";
+import { isLocale, localePath, type Locale } from "@/i18n/config";
 
-export const metadata: Metadata = {
-  title: "COMPANY",
-  description: "株式会社CHIKYU Xの会社概要・代表プロフィール。",
+type Props = {
+  params: Promise<{ locale: string }>;
 };
 
-const profile = [
-  { label: "社名", value: "株式会社CHIKYU X（CHIKYU X Inc.）" },
-  { label: "代表取締役", value: "知久 健（Ken Chikyu）" },
-  {
-    label: "設立",
-    value: "2026年8月8日（令和八年八月八日）",
-  },
-  { label: "本店所在地", value: "石川県金沢市" },
-  { label: "資本金", value: "930,000円" },
-  {
-    label: "事業内容",
-    value:
-      "デザインの企画・制作・コンサルティング／ブランド開発／プロダクトデザイン／クリエイティブ支援／AI・データサイエンスを活用した経営支援",
-  },
-];
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale: localeParam } = await params;
+  if (!isLocale(localeParam)) return {};
+  const dict = getDictionary(localeParam);
+  return {
+    title: "COMPANY",
+    description: dict.company.metaDescription,
+  };
+}
 
-const history = [
-  {
-    year: "2002",
-    body: "ベルリンにて自身のブランド「CHIKYU」を始動。",
-  },
-  {
-    year: "2004",
-    body: "ザ・ノース・フェイスのエキップメントデザイナーとして、道具づくりに携わる。",
-  },
-  {
-    year: "2008",
-    body: "フリーランスのデザイナーとして独立。テント、バックパック、ウェアなど多様なプロダクトを手がける。",
-  },
-  {
-    year: "2026.08.08",
-    body: "株式会社CHIKYU Xを設立（令和八年八月八日）。",
-  },
-];
+export default async function CompanyPage({ params }: Props) {
+  const { locale: localeParam } = await params;
+  if (!isLocale(localeParam)) notFound();
+  const locale = localeParam as Locale;
+  const t = getDictionary(locale).company;
 
-export default function CompanyPage() {
   return (
     <>
       <section className="border-b border-line">
@@ -53,7 +35,7 @@ export default function CompanyPage() {
               COMPANY
             </h1>
             <p className="mt-6 max-w-[34rem] text-[1.15rem] leading-[1.9] text-ink-soft">
-              自然・心・技術の交点から、人の役に立つものを創造する会社です。
+              {t.lead}
             </p>
           </Reveal>
         </div>
@@ -63,14 +45,13 @@ export default function CompanyPage() {
         <div className="mx-auto max-w-[1200px] px-5 py-20 md:px-8 md:py-28">
           <Reveal>
             <p className="section-label">(MISSION)</p>
-            <h2 className="mt-6 max-w-[18ch] text-[clamp(1.6rem,3.8vw,2.6rem)] font-medium leading-[1.4] tracking-[0.04em]">
-              人の役に立つものを創造する
+            <h2 className="mt-6 max-w-[20ch] text-[clamp(1.6rem,3.8vw,2.6rem)] font-medium leading-[1.4] tracking-[0.04em]">
+              {t.missionTitle}
             </h2>
           </Reveal>
           <Reveal delayClassName="reveal-delay-1">
             <p className="mt-8 max-w-[40rem] text-[1.05rem] leading-[2] text-ink-soft">
-              NATURE × SPIRIT × TECHNOLOGY。
-              フィールドで得た感覚と、長く愛されるものづくりの姿勢を軸に、プロダクト・ブランド・組織の創造を支えます。
+              {t.missionBody}
             </p>
           </Reveal>
         </div>
@@ -81,12 +62,12 @@ export default function CompanyPage() {
           <Reveal>
             <p className="section-label">(COMPANY PROFILE)</p>
             <h2 className="mt-6 text-[clamp(1.5rem,3vw,2.1rem)] font-medium tracking-[0.08em]">
-              会社概要
+              {t.profileTitle}
             </h2>
           </Reveal>
 
           <dl className="mt-12 border-t border-line">
-            {profile.map((item, index) => (
+            {t.profile.map((item, index) => (
               <Reveal
                 key={item.label}
                 delayClassName={index > 0 ? "reveal-delay-1" : ""}
@@ -108,31 +89,23 @@ export default function CompanyPage() {
           <Reveal>
             <p className="section-label">(LEADERSHIP)</p>
             <h2 className="mt-6 text-[clamp(1.5rem,3vw,2.1rem)] font-medium tracking-[0.08em]">
-              代表
+              {t.leadershipTitle}
             </h2>
           </Reveal>
 
           <Reveal delayClassName="reveal-delay-1">
             <div className="mt-12 max-w-[44rem]">
-              <p className="text-sm tracking-[0.16em] text-pine">
-                代表取締役
-              </p>
+              <p className="text-sm tracking-[0.16em] text-pine">{t.role}</p>
               <h3 className="mt-3 text-[clamp(1.5rem,3vw,2.2rem)] font-medium tracking-[0.08em]">
-                知久 健
+                {locale === "ja" ? "知久 健" : "Ken Chikyu"}
                 <span className="ml-3 text-base tracking-[0.16em] text-ink-soft">
-                  Ken Chikyu
+                  {locale === "ja" ? "Ken Chikyu" : "知久 健"}
                 </span>
               </h3>
               <div className="mt-8 space-y-5 text-[1.02rem] leading-[2] text-ink-soft">
-                <p>
-                  1978年、静岡市生まれ。文化服装学院デザイン専攻科卒業。イッセイミヤケを経て、2002年よりベルリンで自身のブランド「CHIKYU」を手がける。
-                </p>
-                <p>
-                  2004年に帰国し、ザ・ノース・フェイスのエキップメントデザイナーに。2008年に独立後は、フリーランスとしてアウトドアプロダクトを中心に、テントからバックパック、ウェアまで幅広い製品デザインを手がけてきた。
-                </p>
-                <p>
-                  金沢を拠点に、自然や街の美意識をプロダクトと体験へ落とし込み、長く役立つものづくりを続けている。2026年8月8日、株式会社CHIKYU Xを設立。
-                </p>
+                {t.bio.map((paragraph) => (
+                  <p key={paragraph.slice(0, 24)}>{paragraph}</p>
+                ))}
               </div>
             </div>
           </Reveal>
@@ -144,12 +117,12 @@ export default function CompanyPage() {
           <Reveal>
             <p className="section-label">(HISTORY)</p>
             <h2 className="mt-6 text-[clamp(1.5rem,3vw,2.1rem)] font-medium tracking-[0.08em]">
-              沿革
+              {t.historyTitle}
             </h2>
           </Reveal>
 
           <ol className="mt-12 border-t border-line">
-            {history.map((item) => (
+            {t.history.map((item) => (
               <Reveal key={item.year}>
                 <li className="grid gap-2 border-b border-line py-7 md:grid-cols-[10rem_1fr] md:gap-10">
                   <p className="tracking-[0.12em] text-pine">{item.year}</p>
@@ -164,13 +137,11 @@ export default function CompanyPage() {
       <section>
         <div className="mx-auto flex max-w-[1200px] flex-col gap-6 px-5 py-20 md:flex-row md:items-center md:justify-between md:px-8 md:py-24">
           <Reveal>
-            <p className="text-[1.15rem] tracking-[0.08em]">
-              お問い合わせはこちら
-            </p>
+            <p className="text-[1.15rem] tracking-[0.08em]">{t.contactCta}</p>
           </Reveal>
           <Reveal delayClassName="reveal-delay-1">
             <Link
-              href="/contact"
+              href={localePath(locale, "/contact")}
               className="inline-flex items-center justify-center border border-ink bg-ink px-7 py-3 text-[0.72rem] tracking-[0.2em] text-mist transition-colors hover:bg-pine hover:border-pine"
             >
               CONTACT

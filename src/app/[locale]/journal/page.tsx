@@ -1,17 +1,32 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { Reveal } from "@/components/Reveal";
+import { getDictionary } from "@/i18n/dictionaries";
+import { isLocale, localePath, type Locale } from "@/i18n/config";
 import { getJournalPosts } from "@/lib/journal";
 
-export const metadata: Metadata = {
-  title: "JOURNAL",
-  description:
-    "人・自然・デザインについての言葉と写真。株式会社CHIKYU XのJOURNAL。",
+type Props = {
+  params: Promise<{ locale: string }>;
 };
 
-export default function JournalPage() {
-  const posts = getJournalPosts();
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale: localeParam } = await params;
+  if (!isLocale(localeParam)) return {};
+  const dict = getDictionary(localeParam);
+  return {
+    title: "JOURNAL",
+    description: dict.journal.metaDescription,
+  };
+}
+
+export default async function JournalPage({ params }: Props) {
+  const { locale: localeParam } = await params;
+  if (!isLocale(localeParam)) notFound();
+  const locale = localeParam as Locale;
+  const t = getDictionary(locale).journal;
+  const posts = getJournalPosts(locale);
 
   return (
     <>
@@ -23,9 +38,9 @@ export default function JournalPage() {
               JOURNAL
             </h1>
             <p className="mt-6 max-w-[34rem] text-[1.15rem] leading-[1.9] text-ink-soft">
-              人、自然、デザインについての言葉と写真。
+              {t.lead1}
               <br />
-              代表・知久健が、感じたこと・見たことを残していきます。
+              {t.lead2}
             </p>
           </Reveal>
         </div>
@@ -34,7 +49,7 @@ export default function JournalPage() {
       <section>
         <div className="mx-auto max-w-[1200px] px-5 py-16 md:px-8 md:py-24">
           {posts.length === 0 ? (
-            <p className="text-ink-soft">まだ投稿がありません。</p>
+            <p className="text-ink-soft">{t.empty}</p>
           ) : (
             <ul className="border-t border-line">
               {posts.map((post, index) => (
@@ -44,7 +59,7 @@ export default function JournalPage() {
                 >
                   <li className="border-b border-line">
                     <Link
-                      href={`/journal/${post.slug}`}
+                      href={localePath(locale, `/journal/${post.slug}`)}
                       className="group grid gap-6 py-10 md:grid-cols-[10rem_1fr_12rem] md:items-center md:gap-10 md:py-12"
                     >
                       <time

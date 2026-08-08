@@ -4,19 +4,24 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import { Reveal } from "@/components/Reveal";
+import { locales, isLocale, localePath, type Locale } from "@/i18n/config";
 import { getJournalPost, getJournalSlugs } from "@/lib/journal";
 
 type Props = {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 };
 
 export function generateStaticParams() {
-  return getJournalSlugs().map((slug) => ({ slug }));
+  const slugs = getJournalSlugs();
+  return locales.flatMap((locale) =>
+    slugs.map((slug) => ({ locale, slug })),
+  );
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
-  const post = getJournalPost(slug);
+  const { locale: localeParam, slug } = await params;
+  if (!isLocale(localeParam)) return { title: "JOURNAL" };
+  const post = getJournalPost(slug, localeParam);
   if (!post) return { title: "JOURNAL" };
 
   return {
@@ -26,8 +31,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function JournalPostPage({ params }: Props) {
-  const { slug } = await params;
-  const post = getJournalPost(slug);
+  const { locale: localeParam, slug } = await params;
+  if (!isLocale(localeParam)) notFound();
+  const locale = localeParam as Locale;
+  const post = getJournalPost(slug, locale);
   if (!post) notFound();
 
   return (
@@ -107,7 +114,7 @@ export default async function JournalPostPage({ params }: Props) {
           <Reveal delayClassName="reveal-delay-1">
             <div className="mt-16 border-t border-line pt-10">
               <Link
-                href="/journal"
+                href={localePath(locale, "/journal")}
                 className="text-[0.72rem] tracking-[0.2em] text-ink-soft transition-colors hover:text-ink"
               >
                 ← JOURNAL

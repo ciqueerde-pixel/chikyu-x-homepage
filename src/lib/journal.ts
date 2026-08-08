@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import type { Locale } from "@/i18n/config";
 
 export type JournalPost = {
   slug: string;
@@ -19,7 +20,42 @@ function ensureJournalDir() {
   }
 }
 
-export function getJournalPosts(): JournalPost[] {
+function pickLocalized(
+  data: Record<string, unknown>,
+  key: string,
+  locale: Locale,
+  fallback = "",
+): string {
+  if (locale === "en") {
+    const enKey = `${key}_en`;
+    if (data[enKey]) return String(data[enKey]);
+  }
+  if (data[key]) return String(data[key]);
+  return fallback;
+}
+
+function parsePost(file: string, locale: Locale = "ja"): JournalPost {
+  const slug = file.replace(/\.md$/, "");
+  const raw = fs.readFileSync(path.join(journalDir, file), "utf8");
+  const { data, content } = matter(raw);
+  const record = data as Record<string, unknown>;
+
+  const localizedContent =
+    locale === "en" && record.content_en
+      ? String(record.content_en)
+      : content;
+
+  return {
+    slug,
+    title: pickLocalized(record, "title", locale, slug),
+    date: String(record.date ?? ""),
+    excerpt: pickLocalized(record, "excerpt", locale),
+    cover: record.cover ? String(record.cover) : undefined,
+    content: localizedContent,
+  };
+}
+
+export function getJournalPosts(locale: Locale = "ja"): JournalPost[] {
   ensureJournalDir();
 
   const files = fs
@@ -29,39 +65,18 @@ export function getJournalPosts(): JournalPost[] {
         file.endsWith(".md") && file.toLowerCase() !== "readme.md",
     );
 
-  const posts = files.map((file) => {
-    const slug = file.replace(/\.md$/, "");
-    const raw = fs.readFileSync(path.join(journalDir, file), "utf8");
-    const { data, content } = matter(raw);
-
-    return {
-      slug,
-      title: String(data.title ?? slug),
-      date: String(data.date ?? ""),
-      excerpt: String(data.excerpt ?? ""),
-      cover: data.cover ? String(data.cover) : undefined,
-      content,
-    };
-  });
-
-  return posts.sort((a, b) => (a.date < b.date ? 1 : -1));
+  return files
+    .map((file) => parsePost(file, locale))
+    .sort((a, b) => (a.date < b.date ? 1 : -1));
 }
 
-export function getJournalPost(slug: string): JournalPost | null {
+export function getJournalPost(
+  slug: string,
+  locale: Locale = "ja",
+): JournalPost | null {
   const filePath = path.join(journalDir, `${slug}.md`);
   if (!fs.existsSync(filePath)) return null;
-
-  const raw = fs.readFileSync(filePath, "utf8");
-  const { data, content } = matter(raw);
-
-  return {
-    slug,
-    title: String(data.title ?? slug),
-    date: String(data.date ?? ""),
-    excerpt: String(data.excerpt ?? ""),
-    cover: data.cover ? String(data.cover) : undefined,
-    content,
-  };
+  return parsePost(`${slug}.md`, locale);
 }
 
 export function getJournalSlugs(): string[] {

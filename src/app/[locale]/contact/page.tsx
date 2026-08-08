@@ -1,12 +1,28 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { Reveal } from "@/components/Reveal";
+import { getDictionary } from "@/i18n/dictionaries";
+import { isLocale } from "@/i18n/config";
 
-export const metadata: Metadata = {
-  title: "CONTACT",
-  description: "株式会社CHIKYU Xへのお問い合わせ。",
+type Props = {
+  params: Promise<{ locale: string }>;
 };
 
-export default function ContactPage() {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale: localeParam } = await params;
+  if (!isLocale(localeParam)) return {};
+  const dict = getDictionary(localeParam);
+  return {
+    title: "CONTACT",
+    description: dict.contact.metaDescription,
+  };
+}
+
+export default async function ContactPage({ params }: Props) {
+  const { locale: localeParam } = await params;
+  if (!isLocale(localeParam)) notFound();
+  const t = getDictionary(localeParam).contact;
+
   return (
     <>
       <section className="border-b border-line">
@@ -17,7 +33,7 @@ export default function ContactPage() {
               CONTACT
             </h1>
             <p className="mt-6 max-w-[34rem] text-[1.15rem] leading-[1.9] text-ink-soft">
-              デザイン、ブランド、クリエイティブに関するご相談は、下記までご連絡ください。
+              {t.lead}
             </p>
           </Reveal>
         </div>
@@ -29,7 +45,7 @@ export default function ContactPage() {
             <Reveal>
               <p className="section-label">(EMAIL)</p>
               <h2 className="mt-5 text-[clamp(1.4rem,3vw,1.9rem)] font-medium tracking-[0.06em]">
-                メール
+                {t.emailTitle}
               </h2>
               <a
                 href="mailto:info@chikyu-x.co.jp"
@@ -38,19 +54,19 @@ export default function ContactPage() {
                 info@chikyu-x.co.jp
               </a>
               <p className="mt-6 max-w-[28rem] text-sm leading-[1.9] text-ink-soft">
-                ※ ドメイン取得手続き中のため、受信開始までお時間をいただく場合があります。取得完了後、同アドレスで対応します。
+                {t.emailNote}
               </p>
             </Reveal>
 
             <Reveal delayClassName="reveal-delay-1">
               <p className="section-label">(ADDRESS)</p>
               <h2 className="mt-5 text-[clamp(1.4rem,3vw,1.9rem)] font-medium tracking-[0.06em]">
-                所在地
+                {t.addressTitle}
               </h2>
               <p className="mt-8 text-[1.05rem] leading-[2] text-ink-soft">
-                株式会社CHIKYU X
+                {t.companyName}
                 <br />
-                石川県金沢市
+                {t.address}
               </p>
               <p className="mt-8 text-sm leading-[1.9] text-ink-soft">
                 Web:
@@ -58,7 +74,7 @@ export default function ContactPage() {
                   https://chikyu-x.co.jp
                 </span>
                 <br />
-                （ドメイン取得後に公開予定）
+                {t.webNote}
               </p>
             </Reveal>
           </div>
