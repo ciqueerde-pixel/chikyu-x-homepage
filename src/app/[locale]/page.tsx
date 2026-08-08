@@ -114,7 +114,7 @@ export default async function HomePage({ params }: Props) {
                 delayClassName={index % 2 === 1 ? "reveal-delay-1" : ""}
                 className="border-b border-line md:odd:border-r"
               >
-                <article className="flex h-full flex-col px-0 py-12 md:px-8 md:py-14 md:first:pl-0">
+                <article className="flex h-full flex-col py-12 pl-[1em] pr-0 md:py-14 md:pl-[calc(2rem+1em)] md:pr-8 md:odd:pl-[1em]">
                   <h3 className="text-[1.15rem] font-medium tracking-[0.14em]">
                     {project.title}
                   </h3>
