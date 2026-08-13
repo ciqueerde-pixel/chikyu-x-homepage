@@ -95,12 +95,10 @@ const ja = {
     metaDescription: "株式会社CHIKYU Xへのお問い合わせ。",
     lead: "デザイン、ブランド、クリエイティブに関するご相談は、下記までご連絡ください。",
     emailTitle: "メール",
-    emailNote:
-      "※ ドメイン取得手続き中のため、受信開始までお時間をいただく場合があります。取得完了後、同アドレスで対応します。",
+    emailNote: "通常、2〜3営業日以内にご返信いたします。",
     addressTitle: "所在地",
     companyName: "株式会社CHIKYU X",
     address: "石川県金沢市",
-    webNote: "（ドメイン取得後に公開予定）",
   },
   journal: {
     metaDescription:
@@ -209,12 +207,10 @@ const en: DictionaryShape = {
     metaDescription: "Contact CHIKYU X Inc.",
     lead: "For inquiries about design, branding, and creative work, please reach out below.",
     emailTitle: "Email",
-    emailNote:
-      "* Domain registration is in progress, so receiving mail may take a little time. Once complete, we will respond at this address.",
+    emailNote: "We typically reply within 2–3 business days.",
     addressTitle: "Address",
     companyName: "CHIKYU X Inc.",
     address: "Kanazawa, Ishikawa, Japan",
-    webNote: "(Will go live after domain registration)",
   },
   journal: {
     metaDescription:

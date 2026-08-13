@@ -70,11 +70,12 @@ export default async function ContactPage({ params }: Props) {
               </p>
               <p className="mt-8 text-sm leading-[1.9] text-ink-soft">
                 Web:
-                <span className="ml-2 tracking-[0.04em]">
+                <a
+                  href="https://chikyu-x.co.jp"
+                  className="ml-2 tracking-[0.04em] underline decoration-line underline-offset-4 transition-colors hover:text-pine"
+                >
                   https://chikyu-x.co.jp
-                </span>
-                <br />
-                {t.webNote}
+                </a>
               </p>
             </Reveal>
           </div>

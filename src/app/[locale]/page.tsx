@@ -138,6 +138,12 @@ export default async function HomePage({ params }: Props) {
             <p className="mt-5 max-w-[28rem] text-ink-soft leading-[1.9]">
               {t.companyLead}
             </p>
+            <a
+              href="mailto:info@chikyu-x.co.jp"
+              className="mt-8 inline-block text-[1.05rem] tracking-[0.04em] text-ink underline decoration-line underline-offset-8 transition-colors hover:text-pine"
+            >
+              info@chikyu-x.co.jp
+            </a>
           </Reveal>
           <Reveal delayClassName="reveal-delay-1">
             <div className="flex flex-wrap gap-4 md:justify-end">

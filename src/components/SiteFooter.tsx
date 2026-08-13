@@ -17,7 +17,7 @@ export function SiteFooter({ locale }: Props) {
             className="mt-4 h-auto w-[min(100%,280px)] opacity-80"
           />
         </div>
-        <div className="flex flex-col gap-3 text-sm text-ink-soft md:items-end">
+          <div className="flex flex-col gap-3 text-sm text-ink-soft md:items-end">
           <div className="flex gap-6 tracking-[0.16em]">
             <Link
               href={localePath(locale, "/journal")}
@@ -38,6 +38,12 @@ export function SiteFooter({ locale }: Props) {
               CONTACT
             </Link>
           </div>
+          <a
+            href="mailto:info@chikyu-x.co.jp"
+            className="tracking-[0.04em] transition-colors hover:text-ink"
+          >
+            info@chikyu-x.co.jp
+          </a>
           <p className="text-xs tracking-[0.08em]">
             © {new Date().getFullYear()} CHIKYU X Inc.
           </p>
