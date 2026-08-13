@@ -142,7 +142,7 @@ export default async function CompanyPage({ params }: Props) {
           <Reveal delayClassName="reveal-delay-1">
             <Link
               href={localePath(locale, "/contact")}
-              className="inline-flex items-center justify-center border border-ink bg-ink px-7 py-3 text-[0.72rem] tracking-[0.2em] text-mist transition-colors hover:bg-pine hover:border-pine"
+              className="inline-flex items-center justify-center border border-ink/30 px-7 py-3 text-[0.72rem] tracking-[0.2em] transition-colors hover:border-ink hover:bg-mist/60"
             >
               CONTACT
             </Link>

@@ -57,7 +57,7 @@ export default async function HomePage({ params }: Props) {
           <div className="hero-animate-4 mt-10 flex flex-wrap gap-4">
             <Link
               href={localePath(locale, "/#mission")}
-              className="inline-flex items-center justify-center border border-white bg-white px-7 py-3 text-[0.72rem] tracking-[0.2em] text-ink transition-colors hover:bg-transparent hover:text-white"
+              className="inline-flex items-center justify-center border border-white/50 bg-transparent px-7 py-3 text-[0.72rem] tracking-[0.2em] text-white transition-colors hover:border-white hover:bg-white/10"
             >
               MISSION
             </Link>
@@ -149,7 +149,7 @@ export default async function HomePage({ params }: Props) {
             <div className="flex flex-wrap gap-4 md:justify-end">
               <Link
                 href={localePath(locale, "/company")}
-                className="inline-flex items-center justify-center border border-ink bg-ink px-7 py-3 text-[0.72rem] tracking-[0.2em] text-mist transition-colors hover:bg-pine hover:border-pine"
+                className="inline-flex items-center justify-center border border-ink/30 px-7 py-3 text-[0.72rem] tracking-[0.2em] transition-colors hover:border-ink hover:bg-mist/60"
               >
                 VIEW COMPANY
               </Link>
