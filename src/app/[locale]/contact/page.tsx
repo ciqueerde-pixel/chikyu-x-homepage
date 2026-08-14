@@ -53,9 +53,6 @@ export default async function ContactPage({ params }: Props) {
               >
                 info@chikyu-x.co.jp
               </a>
-              <p className="mt-6 max-w-[28rem] text-sm leading-[1.9] text-ink-soft">
-                {t.emailNote}
-              </p>
             </Reveal>
 
             <Reveal delayClassName="reveal-delay-1">

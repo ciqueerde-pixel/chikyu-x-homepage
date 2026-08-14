@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { BrandMark } from "@/components/BrandMark";
 import { Reveal } from "@/components/Reveal";
 import { getDictionary } from "@/i18n/dictionaries";
 import { isLocale, localePath, type Locale } from "@/i18n/config";
@@ -27,14 +28,19 @@ export default async function CompanyPage({ params }: Props) {
 
   return (
     <>
-      <section className="border-b border-line">
+      <section className="border-b border-line bg-[#0F1012] text-mist">
         <div className="mx-auto max-w-[1200px] px-5 py-20 md:px-8 md:py-28">
           <Reveal>
-            <p className="section-label">(COMPANY)</p>
-            <h1 className="mt-6 text-[clamp(2.2rem,6vw,4rem)] font-medium tracking-[0.06em]">
-              COMPANY
+            <p className="section-label text-white/55">(COMPANY)</p>
+            <h1 className="mt-6">
+              <span className="sr-only">CHIKYU X Inc.</span>
+              <BrandMark
+                variant="inc"
+                priority
+                className="h-auto w-[min(100%,34rem)] max-w-full brightness-0 invert"
+              />
             </h1>
-            <p className="mt-6 max-w-[34rem] text-[1.15rem] leading-[1.9] text-ink-soft">
+            <p className="mt-6 max-w-[34rem] text-[1.15rem] leading-[1.9] text-white/70">
               {t.lead}
             </p>
           </Reveal>

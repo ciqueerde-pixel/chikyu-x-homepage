@@ -34,10 +34,7 @@ export default async function HomePage({ params }: Props) {
         />
 
         <div className="relative mx-auto flex min-h-[100svh] max-w-[1200px] flex-col justify-end px-5 pb-28 pt-[calc(var(--header-h)+3rem)] md:px-8 md:pb-36">
-          <p className="hero-animate-1 text-[0.75rem] font-medium tracking-[0.18em] text-white/70">
-            (HOME)
-          </p>
-          <h1 className="hero-animate-2 mt-8">
+          <h1 className="hero-animate-1">
             <span className="sr-only">CHIKYU X Inc.</span>
             <BrandMark
               variant="inc"
