@@ -31,7 +31,7 @@ export default async function CompanyPage({ params }: Props) {
       <section className="border-b border-line bg-[#0F1012] text-mist">
         <div className="mx-auto max-w-[1200px] px-5 py-20 md:px-8 md:py-28">
           <Reveal>
-            <p className="section-label text-white/55">(COMPANY)</p>
+            <p className="section-label !text-white/55">(COMPANY)</p>
             <h1 className="mt-6">
               <span className="sr-only">CHIKYU X Inc.</span>
               <BrandMark
