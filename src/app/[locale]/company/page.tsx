@@ -140,15 +140,17 @@ export default async function CompanyPage({ params }: Props) {
         </div>
       </section>
 
-      <section>
+      <section className="border-t border-line bg-[#2E3034] text-mist">
         <div className="mx-auto flex max-w-[1200px] flex-col gap-6 px-5 py-20 md:flex-row md:items-center md:justify-between md:px-8 md:py-24">
           <Reveal>
-            <p className="text-[1.15rem] tracking-[0.08em]">{t.contactCta}</p>
+            <p className="text-[1.15rem] tracking-[0.08em] text-white/80">
+              {t.contactCta}
+            </p>
           </Reveal>
           <Reveal delayClassName="reveal-delay-1">
             <Link
               href={localePath(locale, "/contact")}
-              className="inline-flex items-center justify-center border border-ink/30 px-7 py-3 text-[0.72rem] tracking-[0.2em] transition-colors hover:border-ink hover:bg-mist/60"
+              className="inline-flex items-center justify-center border border-white/50 bg-transparent px-7 py-3 text-[0.72rem] tracking-[0.2em] text-white transition-colors hover:border-white hover:bg-white/10"
             >
               CONTACT
             </Link>

@@ -30,14 +30,14 @@ export default async function JournalPage({ params }: Props) {
 
   return (
     <>
-      <section className="border-b border-line">
+      <section className="border-b border-line bg-[#898F97] text-mist">
         <div className="mx-auto max-w-[1200px] px-5 py-20 md:px-8 md:py-28">
           <Reveal>
-            <p className="section-label">(JOURNAL)</p>
-            <h1 className="mt-6 text-[clamp(2.2rem,6vw,4rem)] font-medium tracking-[0.06em]">
+            <p className="section-label !text-white/70">(JOURNAL)</p>
+            <h1 className="mt-6 text-[clamp(2.2rem,6vw,4rem)] font-medium tracking-[0.06em] text-white">
               JOURNAL
             </h1>
-            <p className="mt-6 max-w-[34rem] text-[1.15rem] leading-[1.9] text-ink-soft">
+            <p className="mt-6 max-w-[34rem] text-[1.15rem] leading-[1.9] text-white/80">
               {t.lead1}
               <br />
               {t.lead2}

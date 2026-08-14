@@ -25,14 +25,14 @@ export default async function ContactPage({ params }: Props) {
 
   return (
     <>
-      <section className="border-b border-line">
+      <section className="border-b border-line bg-[#A6ACB4] text-ink">
         <div className="mx-auto max-w-[1200px] px-5 py-20 md:px-8 md:py-28">
           <Reveal>
-            <p className="section-label">(CONTACT)</p>
+            <p className="section-label !text-[#0F1012]/70">(CONTACT)</p>
             <h1 className="mt-6 text-[clamp(2.2rem,6vw,4rem)] font-medium tracking-[0.06em]">
               CONTACT
             </h1>
-            <p className="mt-6 max-w-[34rem] text-[1.15rem] leading-[1.9] text-ink-soft">
+            <p className="mt-6 max-w-[34rem] text-[1.15rem] leading-[1.9] text-[#0F1012]/75">
               {t.lead}
             </p>
           </Reveal>
