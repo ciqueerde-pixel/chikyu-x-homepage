@@ -34,6 +34,16 @@ function pickLocalized(
   return fallback;
 }
 
+function formatDate(value: unknown): string {
+  if (value instanceof Date && !Number.isNaN(value.getTime())) {
+    return value.toISOString().slice(0, 10);
+  }
+  if (typeof value === "string" && value.trim()) {
+    return value.slice(0, 10);
+  }
+  return "";
+}
+
 function parsePost(file: string, locale: Locale = "ja"): JournalPost {
   const slug = file.replace(/\.md$/, "");
   const raw = fs.readFileSync(path.join(journalDir, file), "utf8");
@@ -48,7 +58,7 @@ function parsePost(file: string, locale: Locale = "ja"): JournalPost {
   return {
     slug,
     title: pickLocalized(record, "title", locale, slug),
-    date: String(record.date ?? ""),
+    date: formatDate(record.date),
     excerpt: pickLocalized(record, "excerpt", locale),
     cover: record.cover ? String(record.cover) : undefined,
     content: localizedContent,

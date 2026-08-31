@@ -1,12 +1,16 @@
 import Link from "next/link";
 import { BrandMark } from "@/components/BrandMark";
+import { getDictionary } from "@/i18n/dictionaries";
 import { localePath, type Locale } from "@/i18n/config";
+import { X_PROFILE_URL } from "@/lib/site";
 
 type Props = {
   locale: Locale;
 };
 
 export function SiteFooter({ locale }: Props) {
+  const t = getDictionary(locale).social;
+
   return (
     <footer className="border-t border-line">
       <div className="mx-auto flex max-w-[1200px] flex-col gap-8 px-5 py-12 md:flex-row md:items-end md:justify-between md:px-8">
@@ -37,6 +41,15 @@ export function SiteFooter({ locale }: Props) {
             >
               CONTACT
             </Link>
+            <a
+              href={X_PROFILE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={t.xAria}
+              className="transition-colors hover:text-ink"
+            >
+              {t.x}
+            </a>
           </div>
           <a
             href="mailto:info@chikyu-x.co.jp"

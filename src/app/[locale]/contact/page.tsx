@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { Reveal } from "@/components/Reveal";
 import { getDictionary } from "@/i18n/dictionaries";
 import { isLocale } from "@/i18n/config";
+import { X_HANDLE_AT, X_PROFILE_URL } from "@/lib/site";
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -72,6 +73,16 @@ export default async function ContactPage({ params }: Props) {
                   className="ml-2 tracking-[0.04em] underline decoration-line underline-offset-4 transition-colors hover:text-pine"
                 >
                   https://chikyu-x.co.jp
+                </a>
+                <br />
+                X:
+                <a
+                  href={X_PROFILE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="ml-2 tracking-[0.04em] underline decoration-line underline-offset-4 transition-colors hover:text-pine"
+                >
+                  {X_HANDLE_AT}
                 </a>
               </p>
             </Reveal>

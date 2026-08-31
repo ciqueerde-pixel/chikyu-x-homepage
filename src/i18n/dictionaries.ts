@@ -45,6 +45,10 @@ const ja = {
         title: "地球を吹く in Japan",
         body: "トランペッター近藤等則とともに日本の秘境を巡り、自然（NATURE）のなかで心（SPIRIT）を開き、テクノロジー（TECHNOLOGY）の在り方を問い直す旅。地球と人との関係性を、体験として刻んだプロジェクト。",
       },
+      {
+        title: "7 NATURE USAGI",
+        body: "未来を受け継ぐ子どもたちに、自然のみずみずしさを伝えるEarth Kids Project。7匹のネイチャーウサギとともに、アウトドアと環境への関わり方を、大人も子どもと一緒になって体験する試み。",
+      },
     ],
   },
   company: {
@@ -105,6 +109,11 @@ const ja = {
     lead1: "人、自然、デザインについての言葉と写真。",
     lead2: "代表・知久健が、感じたこと・見たことを残していきます。",
     empty: "まだ投稿がありません。",
+    shareOnX: "Xでシェア",
+  },
+  social: {
+    x: "X",
+    xAria: "公式X（@CHIKYUXken）",
   },
 };
 
@@ -152,6 +161,10 @@ const en: DictionaryShape = {
       {
         title: "Chikyu o Fuku in Japan",
         body: "Traveling Japan’s remote places with trumpeter Toshinori Kondo—opening the SPIRIT in NATURE and rethinking TECHNOLOGY. A project that experienced the relationship between Earth and people firsthand.",
+      },
+      {
+        title: "7 NATURE USAGI",
+        body: "An Earth Kids Project that shares the freshness of nature with the children who will inherit the Earth. With seven nature rabbits, an attempt for adults and children to experience, together, a way of relating to the outdoors and the environment.",
       },
     ],
   },
@@ -216,6 +229,11 @@ const en: DictionaryShape = {
     lead1: "Words and photographs on people, nature, and design.",
     lead2: "Notes from Ken Chikyu on what he feels and sees.",
     empty: "No posts yet.",
+    shareOnX: "Share on X",
+  },
+  social: {
+    x: "X",
+    xAria: "Official X (@CHIKYUXken)",
   },
 };
 

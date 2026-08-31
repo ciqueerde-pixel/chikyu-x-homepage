@@ -4,8 +4,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import { Reveal } from "@/components/Reveal";
+import { getDictionary } from "@/i18n/dictionaries";
 import { locales, isLocale, localePath, type Locale } from "@/i18n/config";
 import { getJournalPost, getJournalSlugs } from "@/lib/journal";
+import { X_HANDLE_AT, absoluteUrl, xShareUrl } from "@/lib/site";
 
 type Props = {
   params: Promise<{ locale: string; slug: string }>;
@@ -24,9 +26,31 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = getJournalPost(slug, localeParam);
   if (!post) return { title: "JOURNAL" };
 
+  const description = post.excerpt || post.title;
+  const path = localePath(localeParam, `/journal/${slug}`);
+  const images = post.cover ? [{ url: post.cover }] : undefined;
+
   return {
     title: post.title,
-    description: post.excerpt || post.title,
+    description,
+    alternates: { canonical: path },
+    openGraph: {
+      type: "article",
+      title: post.title,
+      description,
+      url: path,
+      publishedTime: post.date ? `${post.date}T00:00:00+09:00` : undefined,
+      locale: localeParam === "en" ? "en_US" : "ja_JP",
+      images,
+    },
+    twitter: {
+      card: post.cover ? "summary_large_image" : "summary",
+      site: X_HANDLE_AT,
+      creator: X_HANDLE_AT,
+      title: post.title,
+      description,
+      images: post.cover ? [post.cover] : undefined,
+    },
   };
 }
 
@@ -36,6 +60,8 @@ export default async function JournalPostPage({ params }: Props) {
   const locale = localeParam as Locale;
   const post = getJournalPost(slug, locale);
   if (!post) notFound();
+  const t = getDictionary(locale).journal;
+  const pageUrl = absoluteUrl(localePath(locale, `/journal/${slug}`));
 
   return (
     <article>
@@ -112,13 +138,21 @@ export default async function JournalPostPage({ params }: Props) {
           </Reveal>
 
           <Reveal delayClassName="reveal-delay-1">
-            <div className="mt-16 border-t border-line pt-10">
+            <div className="mt-16 flex items-center justify-between gap-6 border-t border-line pt-10">
               <Link
                 href={localePath(locale, "/journal")}
                 className="text-[0.72rem] tracking-[0.2em] text-ink-soft transition-colors hover:text-ink"
               >
                 ← JOURNAL
               </Link>
+              <a
+                href={xShareUrl(post.title, pageUrl)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[0.72rem] tracking-[0.2em] text-ink-soft transition-colors hover:text-ink"
+              >
+                {t.shareOnX}
+              </a>
             </div>
           </Reveal>
         </div>

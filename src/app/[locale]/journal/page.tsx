@@ -6,6 +6,7 @@ import { Reveal } from "@/components/Reveal";
 import { getDictionary } from "@/i18n/dictionaries";
 import { isLocale, localePath, type Locale } from "@/i18n/config";
 import { getJournalPosts } from "@/lib/journal";
+import { X_HANDLE_AT } from "@/lib/site";
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -15,9 +16,29 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale: localeParam } = await params;
   if (!isLocale(localeParam)) return {};
   const dict = getDictionary(localeParam);
+  const posts = getJournalPosts(localeParam);
+  const cover = posts.find((post) => post.cover)?.cover;
+  const path = localePath(localeParam, "/journal");
+
   return {
     title: "JOURNAL",
     description: dict.journal.metaDescription,
+    alternates: { canonical: path },
+    openGraph: {
+      title: "JOURNAL",
+      description: dict.journal.metaDescription,
+      url: path,
+      locale: localeParam === "en" ? "en_US" : "ja_JP",
+      images: cover ? [{ url: cover }] : undefined,
+    },
+    twitter: {
+      card: cover ? "summary_large_image" : "summary",
+      site: X_HANDLE_AT,
+      creator: X_HANDLE_AT,
+      title: "JOURNAL",
+      description: dict.journal.metaDescription,
+      images: cover ? [cover] : undefined,
+    },
   };
 }
 
