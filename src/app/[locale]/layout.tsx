@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/next";
 import { notFound } from "next/navigation";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -28,6 +29,7 @@ export default async function LocaleLayout({ children, params }: Props) {
           <main className="flex-1 pt-[var(--header-h)]">{children}</main>
           <SiteFooter locale={locale} />
         </div>
+        <Analytics />
       </body>
     </html>
   );
