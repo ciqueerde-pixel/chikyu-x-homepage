@@ -62,6 +62,9 @@ export default async function JournalPostPage({ params }: Props) {
   if (!post) notFound();
   const t = getDictionary(locale).journal;
   const pageUrl = absoluteUrl(localePath(locale, `/journal/${slug}`));
+  const coverInBody = Boolean(
+    post.cover && post.content.includes(`](${post.cover})`),
+  );
 
   return (
     <article>
@@ -82,7 +85,7 @@ export default async function JournalPostPage({ params }: Props) {
         </div>
       </section>
 
-      {post.cover ? (
+      {post.cover && !coverInBody ? (
         <div className="relative mx-auto aspect-[16/9] max-w-[1200px] overflow-hidden md:mt-0">
           <Image
             src={post.cover}

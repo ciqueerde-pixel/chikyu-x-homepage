@@ -10,6 +10,8 @@ content_en: |
 
   The September issue of SWITCH, released on August 20, traces sixty years of THE NORTH FACE across some 300 pages. That day I met with President Watanabe of Goldwin, who asked whether I had been the first to see it. I ordered the cloth-bound special edition on the spot. By the time I returned to Kanazawa the next day, it was already there.
 
+  ![SWITCH September issue, THE NORTH FACE 60th special edition](/journal/switch-tnf-60th.jpg)
+
   I have been a designer for THE NORTH FACE since September 2004—twenty-two years now. Half of President Watanabe's forty-four, spent with the brand.
 
   In 2006, for THE NORTH FACE 40th Anniversary, we held an exhibition at SPIRAL in Aoyama. I organized a live performance by Toshinori Kondo, and a 7 NATURE USAGI workshop. I was still in my twenties. That, too, appears in the issue.
