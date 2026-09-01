@@ -47,7 +47,7 @@ export default async function CompanyPage({ params }: Props) {
         </div>
       </section>
 
-      <section className="border-b border-line">
+      <section className="border-b border-line bg-white">
         <div className="mx-auto max-w-[1200px] px-5 py-20 md:px-8 md:py-28">
           <Reveal>
             <p className="section-label">(MISSION)</p>
@@ -63,26 +63,26 @@ export default async function CompanyPage({ params }: Props) {
         </div>
       </section>
 
-      <section className="border-b border-line bg-[color-mix(in_oklab,var(--mist)_55%,transparent)]">
+      <section className="border-b border-line bg-[#A6ACB4] text-ink">
         <div className="mx-auto max-w-[1200px] px-5 py-20 md:px-8 md:py-28">
           <Reveal>
-            <p className="section-label">(COMPANY PROFILE)</p>
+            <p className="section-label !text-[#0F1012]/70">(COMPANY PROFILE)</p>
             <h2 className="mt-6 text-[clamp(1.5rem,3vw,2.1rem)] font-medium tracking-[0.08em]">
               {t.profileTitle}
             </h2>
           </Reveal>
 
-          <dl className="mt-12 border-t border-line">
+          <dl className="mt-12 border-t border-[#0F1012]/15">
             {t.profile.map((item, index) => (
               <Reveal
                 key={item.label}
                 delayClassName={index > 0 ? "reveal-delay-1" : ""}
               >
-                <div className="grid gap-2 border-b border-line py-7 md:grid-cols-[12rem_1fr] md:gap-10">
-                  <dt className="text-sm tracking-[0.12em] text-pine">
+                <div className="grid gap-2 border-b border-[#0F1012]/15 py-7 md:grid-cols-[12rem_1fr] md:gap-10">
+                  <dt className="text-sm tracking-[0.12em] text-[#0F1012]/70">
                     {item.label}
                   </dt>
-                  <dd className="leading-[1.9] text-ink-soft">{item.value}</dd>
+                  <dd className="leading-[1.9] text-[#0F1012]/80">{item.value}</dd>
                 </div>
               </Reveal>
             ))}
@@ -90,25 +90,25 @@ export default async function CompanyPage({ params }: Props) {
         </div>
       </section>
 
-      <section className="border-b border-line">
+      <section className="border-b border-white/15 bg-[#898F97] text-mist">
         <div className="mx-auto max-w-[1200px] px-5 py-20 md:px-8 md:py-28">
           <Reveal>
-            <p className="section-label">(LEADERSHIP)</p>
-            <h2 className="mt-6 text-[clamp(1.5rem,3vw,2.1rem)] font-medium tracking-[0.08em]">
+            <p className="section-label !text-white/70">(LEADERSHIP)</p>
+            <h2 className="mt-6 text-[clamp(1.5rem,3vw,2.1rem)] font-medium tracking-[0.08em] text-white">
               {t.leadershipTitle}
             </h2>
           </Reveal>
 
           <Reveal delayClassName="reveal-delay-1">
             <div className="mt-12 max-w-[44rem]">
-              <p className="text-sm tracking-[0.16em] text-pine">{t.role}</p>
-              <h3 className="mt-3 text-[clamp(1.5rem,3vw,2.2rem)] font-medium tracking-[0.08em]">
+              <p className="text-sm tracking-[0.16em] text-white/70">{t.role}</p>
+              <h3 className="mt-3 text-[clamp(1.5rem,3vw,2.2rem)] font-medium tracking-[0.08em] text-white">
                 {locale === "ja" ? "知久 健" : "Ken Chikyu"}
-                <span className="ml-3 text-base tracking-[0.16em] text-ink-soft">
+                <span className="ml-3 text-base tracking-[0.16em] text-white/70">
                   {locale === "ja" ? "Ken Chikyu" : "知久 健"}
                 </span>
               </h3>
-              <div className="mt-8 space-y-5 text-[1.02rem] leading-[2] text-ink-soft">
+              <div className="mt-8 space-y-5 text-[1.02rem] leading-[2] text-white/80">
                 {t.bio.map((paragraph) => (
                   <p key={paragraph.slice(0, 24)}>{paragraph}</p>
                 ))}
@@ -118,21 +118,21 @@ export default async function CompanyPage({ params }: Props) {
         </div>
       </section>
 
-      <section className="border-b border-line">
+      <section className="border-b border-white/15 bg-[#898F97] text-mist">
         <div className="mx-auto max-w-[1200px] px-5 py-20 md:px-8 md:py-28">
           <Reveal>
-            <p className="section-label">(HISTORY)</p>
-            <h2 className="mt-6 text-[clamp(1.5rem,3vw,2.1rem)] font-medium tracking-[0.08em]">
+            <p className="section-label !text-white/70">(HISTORY)</p>
+            <h2 className="mt-6 text-[clamp(1.5rem,3vw,2.1rem)] font-medium tracking-[0.08em] text-white">
               {t.historyTitle}
             </h2>
           </Reveal>
 
-          <ol className="mt-12 border-t border-line">
+          <ol className="mt-12 border-t border-white/20">
             {t.history.map((item) => (
               <Reveal key={item.year}>
-                <li className="grid gap-2 border-b border-line py-7 md:grid-cols-[10rem_1fr] md:gap-10">
-                  <p className="tracking-[0.12em] text-pine">{item.year}</p>
-                  <p className="leading-[1.9] text-ink-soft">{item.body}</p>
+                <li className="grid gap-2 border-b border-white/20 py-7 md:grid-cols-[10rem_1fr] md:gap-10">
+                  <p className="tracking-[0.12em] text-white/70">{item.year}</p>
+                  <p className="leading-[1.9] text-white/80">{item.body}</p>
                 </li>
               </Reveal>
             ))}

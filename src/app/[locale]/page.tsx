@@ -59,10 +59,10 @@ export default async function HomePage({ params }: Props) {
               MISSION
             </Link>
             <Link
-              href={localePath(locale, "/contact")}
+              href={localePath(locale, "/journal")}
               className="inline-flex items-center justify-center border border-white/50 bg-transparent px-7 py-3 text-[0.72rem] tracking-[0.2em] text-white transition-colors hover:border-white hover:bg-white/10"
             >
-              CONTACT
+              JOURNAL
             </Link>
           </div>
         </div>
@@ -125,19 +125,30 @@ export default async function HomePage({ params }: Props) {
         </div>
       </section>
 
-      <section className="border-t border-line">
-        <div className="mx-auto grid max-w-[1200px] gap-12 px-5 py-24 md:grid-cols-[1fr_1.1fr] md:items-end md:px-8 md:py-32">
+      <section className="relative overflow-hidden border-t border-line text-mist">
+        <Image
+          src="/company/header.jpg"
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover object-[80%_72%]"
+        />
+        <div
+          className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(22,16,12,0.58)_0%,rgba(22,16,12,0.28)_42%,rgba(22,16,12,0.08)_75%,transparent_100%)]"
+          aria-hidden="true"
+        />
+        <div className="relative mx-auto grid min-h-[22rem] max-w-[1200px] gap-12 px-5 py-24 md:min-h-[28rem] md:grid-cols-[1fr_1.1fr] md:items-end md:px-8 md:py-32">
           <Reveal>
-            <p className="section-label">(COMPANY)</p>
-            <h2 className="mt-6 text-[clamp(1.6rem,3.5vw,2.4rem)] font-medium tracking-[0.06em]">
+            <p className="section-label !text-white/70">(COMPANY)</p>
+            <h2 className="mt-6 text-[clamp(1.6rem,3.5vw,2.4rem)] font-medium tracking-[0.06em] text-white">
               {t.companyTitle}
             </h2>
-            <p className="mt-5 max-w-[28rem] text-ink-soft leading-[1.9]">
+            <p className="mt-5 max-w-[28rem] leading-[1.9] text-white/80">
               {t.companyLead}
             </p>
             <a
               href="mailto:info@chikyu-x.co.jp"
-              className="mt-8 inline-block text-[1.05rem] tracking-[0.04em] text-ink underline decoration-line underline-offset-8 transition-colors hover:text-pine"
+              className="mt-8 inline-block text-[1.05rem] tracking-[0.04em] text-white underline decoration-white/40 underline-offset-8 transition-colors hover:text-white"
             >
               info@chikyu-x.co.jp
             </a>
@@ -146,13 +157,13 @@ export default async function HomePage({ params }: Props) {
             <div className="flex flex-wrap gap-4 md:justify-end">
               <Link
                 href={localePath(locale, "/company")}
-                className="inline-flex items-center justify-center border border-ink/30 px-7 py-3 text-[0.72rem] tracking-[0.2em] transition-colors hover:border-ink hover:bg-mist/60"
+                className="inline-flex items-center justify-center border border-white/50 bg-transparent px-7 py-3 text-[0.72rem] tracking-[0.2em] text-white transition-colors hover:border-white hover:bg-white/10"
               >
                 VIEW COMPANY
               </Link>
               <Link
                 href={localePath(locale, "/contact")}
-                className="inline-flex items-center justify-center border border-ink/30 px-7 py-3 text-[0.72rem] tracking-[0.2em] transition-colors hover:border-ink hover:bg-mist/60"
+                className="inline-flex items-center justify-center border border-white/50 bg-transparent px-7 py-3 text-[0.72rem] tracking-[0.2em] text-white transition-colors hover:border-white hover:bg-white/10"
               >
                 CONTACT
               </Link>

@@ -51,8 +51,20 @@ export default async function JournalPage({ params }: Props) {
 
   return (
     <>
-      <section className="border-b border-line bg-[#898F97] text-mist">
-        <div className="mx-auto max-w-[1200px] px-5 py-20 md:px-8 md:py-28">
+      <section className="relative overflow-hidden border-b border-line text-mist">
+        <Image
+          src="/journal/header.jpg"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-[center_58%]"
+        />
+        <div
+          className="pointer-events-none absolute inset-0 bg-[linear-gradient(105deg,rgba(12,14,16,0.62)_0%,rgba(12,14,16,0.32)_46%,rgba(12,14,16,0.18)_100%)]"
+          aria-hidden="true"
+        />
+        <div className="relative mx-auto max-w-[1200px] px-5 py-24 md:px-8 md:py-36">
           <Reveal>
             <p className="section-label !text-white/70">(JOURNAL)</p>
             <h1 className="mt-6 text-[clamp(2.2rem,6vw,4rem)] font-medium tracking-[0.06em] text-white">

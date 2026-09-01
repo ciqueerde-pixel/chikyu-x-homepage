@@ -47,7 +47,7 @@ const ja = {
       },
       {
         title: "7 NATURE USAGI",
-        body: "未来を受け継ぐ子どもたちに、自然のみずみずしさを伝えるEarth Kids Project。7匹のネイチャーウサギとともに、アウトドアと環境への関わり方を、大人も子どもと一緒になって体験する試み。",
+        body: "未来を受け継ぐ子どもたちに、自然のみずみずしさを伝えるEarth Kids Project。7匹のネイチャーウサギとともに、アウトドアと環境への関わり方を、大人も子どもと一緒になって体験する物語。",
       },
     ],
   },
@@ -164,7 +164,7 @@ const en: DictionaryShape = {
       },
       {
         title: "7 NATURE USAGI",
-        body: "An Earth Kids Project that shares the freshness of nature with the children who will inherit the Earth. With seven nature rabbits, an attempt for adults and children to experience, together, a way of relating to the outdoors and the environment.",
+        body: "An Earth Kids Project that shares the freshness of nature with the children who will inherit the Earth. With seven nature rabbits, a story for adults and children to experience, together, a way of relating to the outdoors and the environment.",
       },
     ],
   },

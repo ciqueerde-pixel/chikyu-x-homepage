@@ -12,7 +12,7 @@ export function SiteFooter({ locale }: Props) {
   const t = getDictionary(locale).social;
 
   return (
-    <footer className="border-t border-line">
+    <footer className="border-t border-line bg-white text-ink">
       <div className="mx-auto flex max-w-[1200px] flex-col gap-8 px-5 py-12 md:flex-row md:items-end md:justify-between md:px-8">
         <div>
           <BrandMark className="h-auto w-[min(100%,280px)]" />
@@ -21,23 +21,23 @@ export function SiteFooter({ locale }: Props) {
             className="mt-4 h-auto w-[min(100%,280px)] opacity-80"
           />
         </div>
-          <div className="flex flex-col gap-3 text-sm text-ink-soft md:items-end">
+        <div className="flex flex-col gap-3 text-sm text-ink md:items-end">
           <div className="flex gap-6 tracking-[0.16em]">
             <Link
               href={localePath(locale, "/journal")}
-              className="transition-colors hover:text-ink"
+              className="transition-colors hover:text-pine"
             >
               JOURNAL
             </Link>
             <Link
               href={localePath(locale, "/company")}
-              className="transition-colors hover:text-ink"
+              className="transition-colors hover:text-pine"
             >
               COMPANY
             </Link>
             <Link
               href={localePath(locale, "/contact")}
-              className="transition-colors hover:text-ink"
+              className="transition-colors hover:text-pine"
             >
               CONTACT
             </Link>
@@ -46,14 +46,14 @@ export function SiteFooter({ locale }: Props) {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={t.xAria}
-              className="transition-colors hover:text-ink"
+              className="transition-colors hover:text-pine"
             >
               {t.x}
             </a>
           </div>
           <a
             href="mailto:info@chikyu-x.co.jp"
-            className="tracking-[0.04em] transition-colors hover:text-ink"
+            className="tracking-[0.04em] transition-colors hover:text-pine"
           >
             info@chikyu-x.co.jp
           </a>
