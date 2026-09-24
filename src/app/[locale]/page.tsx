@@ -128,13 +128,13 @@ export default async function HomePage({ params }: Props) {
       <section className="relative overflow-hidden border-t border-line text-mist">
         <Image
           src="/company/header.jpg"
-          alt=""
+          alt={locale === "en" ? "Stone wall of Kanazawa Castle" : "金沢城の石垣"}
           fill
           sizes="100vw"
-          className="object-cover object-[80%_72%]"
+          className="object-cover object-center"
         />
         <div
-          className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(22,16,12,0.58)_0%,rgba(22,16,12,0.28)_42%,rgba(22,16,12,0.08)_75%,transparent_100%)]"
+          className="pointer-events-none absolute inset-0 bg-[linear-gradient(105deg,rgba(12,14,16,0.62)_0%,rgba(12,14,16,0.32)_46%,rgba(12,14,16,0.18)_100%)]"
           aria-hidden="true"
         />
         <div className="relative mx-auto grid min-h-[22rem] max-w-[1200px] gap-12 px-5 py-24 md:min-h-[28rem] md:grid-cols-[1fr_1.1fr] md:items-end md:px-8 md:py-32">
